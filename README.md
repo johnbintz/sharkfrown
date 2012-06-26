@@ -1,29 +1,14 @@
-# Sharkfrown
+# Preview ur markdowns
 
-TODO: Write a gem description
+```
+gem install sharkfrown
+cd /my/project/with/markdown/files
+sharkfrown
+```
 
-## Installation
+Open `http://localhost:6789/` and away you go!
 
-Add this line to your application's Gemfile:
+## How?!
 
-    gem 'sharkfrown'
+`Rack::Directory` and a really simple Rack app that processes Markdown w/ syntax highlighting from Pygments.
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install sharkfrown
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request

@@ -4,8 +4,8 @@ require File.expand_path('../lib/sharkfrown/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["John Bintz"]
   gem.email         = ["john@coswellproductions.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Stupid-simple Rack-based Markdown browser with syntax highlighting.}
+  gem.summary       = %q{Stupid-simple Rack-based Markdown browser with syntax highlighting.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
