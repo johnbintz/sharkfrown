@@ -9,7 +9,10 @@ class Sharkfrown
   class PygmentizeHTML < Redcarpet::Render::HTML
     def block_code(code, language)
       require 'pygmentize'
-      Pygmentize.process(code, language)
+      result = Pygmentize.process(code, language)
+      result = "<pre>#{code}</pre>" if result.empty?
+
+      result
     end
   end
 
