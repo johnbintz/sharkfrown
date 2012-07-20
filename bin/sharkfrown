@@ -5,6 +5,16 @@ require 'rack'
 require 'pygmentize'
 require 'redcarpet'
 
+require 'optparse'
+
+options = { :port => 6789, :verbose => false }
+OptionParser.new do |opts|
+  opts.banner = "Usage: sharkfrown [options]"
+
+  opts.on('-p', '--port PORT', "Change port (default: #{options[:port]}") { |v| options[:port] = v.to_i }
+  opts.on('-v', '--verbose', "Verbose (show request log)") { |v| options[:verbose] = true }
+end.parse!
+
 class Sharkfrown
   class PygmentizeHTML < Redcarpet::Render::HTML
     def block_code(code, language)
@@ -72,8 +82,8 @@ HTML
   end
 end
 
-Thin::Server.start('0.0.0.0', 6789) do
-  use Rack::CommonLogger
+Thin::Server.start('0.0.0.0', options[:port]) do
+  use Rack::CommonLogger if options[:verbose]
   use Rack::ShowExceptions
 
   run Sharkfrown.new
