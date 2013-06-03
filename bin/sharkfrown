@@ -2,12 +2,12 @@
 
 require 'thin'
 require 'rack'
-require 'pygmentize'
+require 'coderay'
 require 'redcarpet'
 
 require 'optparse'
 
-options = { :port => 6789, :verbose => false }
+options = { port: 6789, verbose: false }
 OptionParser.new do |opts|
   opts.banner = "Usage: sharkfrown [options]"
 
@@ -16,13 +16,10 @@ OptionParser.new do |opts|
 end.parse!
 
 class Sharkfrown
-  class PygmentizeHTML < Redcarpet::Render::HTML
+  class CodeRayHTML < Redcarpet::Render::HTML
     def block_code(code, language)
-      require 'pygmentize'
-      result = Pygmentize.process(code, language)
-      result = "<pre>#{code}</pre>" if result.empty?
-
-      result
+      require 'coderay'
+      CodeRay.scan(code, language.to_sym).div
     end
   end
 
@@ -75,7 +72,7 @@ class Sharkfrown
   </head>
   <body>
     <a href=".">Back</a>
-    #{Redcarpet::Markdown.new(PygmentizeHTML, :fenced_code_blocks => true).render(File.read(file))}
+    #{Redcarpet::Markdown.new(CodeRayHTML, fenced_code_blocks: true).render(File.read(file))}
   </body>
 </html>
 HTML

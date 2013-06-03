@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Sharkfrown::VERSION
 
-  gem.add_dependency 'pygmentize'
+  gem.add_dependency 'coderay'
   gem.add_dependency 'thin'
   gem.add_dependency 'redcarpet'
 end
